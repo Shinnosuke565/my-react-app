@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+#taskTable div {
+  margin-top: 20px;
+}
+
+#taskTable div,
+#taskTable div div {
+  display: flex;
+  align-items: center;
+}
+
+#taskTable div div {
+  justify-content: space-between;
+  margin: 0px;
+}
+
+button {
+  border-radius: 11px;
+  background-color: transparent;
+  border-width: thin;
+  height: 20px;
+}
+
+.comment {
+  margin-right: 10px;
+}
+
+.label {
+  margin-right: 20px;
+}
