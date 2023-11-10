@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function TodoApp() {
+function NewTodoApp() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
 
@@ -37,15 +37,11 @@ function TodoApp() {
       </div>
       <h2>新規タスクの追加</h2>
       <div>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
+        <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
         <button onClick={handleAddClick}>追加</button>
       </div>
     </div>
   );
 }
 
-export default TodoApp;
+export default NewTodoApp;
