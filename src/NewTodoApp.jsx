@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Task from './Task';
 
 function NewTodoApp() {
   const [todos, setTodos] = useState([]);
@@ -10,8 +11,14 @@ function NewTodoApp() {
       return;
     }
 
-    setTodos([...todos, { id: todos.length, text: input, status: '作業中' }]);
+    const newTodos = todos.map((todo, index) => ({ ...todo, id: index }));
+    setTodos([...newTodos, { id: newTodos.length, text: input, status: '作業中' }]);
     setInput('');
+  };
+
+  const handleDeleteClick = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id).map((todo, index) => ({ ...todo, id: index }));
+    setTodos(newTodos);
   };
 
   return (
@@ -27,12 +34,7 @@ function NewTodoApp() {
       </div>
       <div>
         {todos.map((todo) => (
-          <div key={todo.id}>
-            <span>{todo.id}</span>
-            <span>{todo.text}</span>
-            <button>{todo.status}</button>
-            <button>削除</button>
-          </div>
+          <Task key={todo.id} task={todo} handleDeleteClick={handleDeleteClick} />
         ))}
       </div>
       <h2>新規タスクの追加</h2>
