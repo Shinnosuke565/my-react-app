@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Task from './Task';
+import Task from './components/Task';
 
 function NewTodoApp() {
   const [todos, setTodos] = useState([]);
