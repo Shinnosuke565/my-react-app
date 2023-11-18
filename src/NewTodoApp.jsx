@@ -14,6 +14,11 @@ function NewTodoApp() {
     setInput('');
   };
 
+  const handleDeleteClick = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
   return (
     <div>
       <h1>ToDoリスト</h1>
@@ -31,7 +36,7 @@ function NewTodoApp() {
             <span>{todo.id}</span>
             <span>{todo.text}</span>
             <button>{todo.status}</button>
-            <button>削除</button>
+            <button onClick={() => handleDeleteClick(todo.id)}>削除</button> {/* 削除ボタン */}
           </div>
         ))}
       </div>
