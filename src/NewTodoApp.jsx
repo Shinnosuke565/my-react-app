@@ -10,12 +10,13 @@ function NewTodoApp() {
       return;
     }
 
-    setTodos([...todos, { id: todos.length, text: input, status: '作業中' }]);
+    const newTodos = todos.map((todo, index) => ({ ...todo, id: index }));
+    setTodos([...newTodos, { id: newTodos.length, text: input, status: '作業中' }]);
     setInput('');
   };
 
   const handleDeleteClick = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    const newTodos = todos.filter((todo) => todo.id !== id).map((todo, index) => ({...todo, id: index}));
     setTodos(newTodos);
   };
 
