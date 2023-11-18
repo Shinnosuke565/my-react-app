@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "name": "todo-app",
+  "description": "Getting Started with Create React App",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shinnosuke565/my-react-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shinnosuke565/my-react-app/issues"
+  },
+  "homepage": "https://github.com/Shinnosuke565/my-react-app#readme"
+}
