@@ -19,6 +19,17 @@ function NewTodoApp() {
     setTodos(newTodos);
   };
 
+  const handleStatusChange = (id) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, status: todo.status === '作業中' ? '完了' : '作業中' };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodos);
+  };
+
   return (
     <div>
       <h1>ToDoリスト</h1>
@@ -35,8 +46,8 @@ function NewTodoApp() {
           <div key={todo.id}>
             <span>{todo.id}</span>
             <span>{todo.text}</span>
-            <button>{todo.status}</button>
-            <button onClick={() => handleDeleteClick(todo.id)}>削除</button> {/* 削除ボタン */}
+            <button onClick={() => handleStatusChange(todo.id)}>{todo.status}</button> {}
+            <button onClick={() => handleDeleteClick(todo.id)}>削除</button> {}
           </div>
         ))}
       </div>
