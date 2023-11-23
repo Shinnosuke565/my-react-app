@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function NewTodoApp() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('すべて');
 
   const handleAddClick = () => {
     if (input === '') {
@@ -30,24 +31,33 @@ function NewTodoApp() {
     setTodos(newTodos);
   };
 
+  const handleStatusFilterChange = (status) => {
+    setSelectedStatus(status);
+  };
+
   return (
     <div>
       <h1>ToDoリスト</h1>
       <div>
-        <input type="radio" id="all" name="status" checked />
+        <input type="radio" id="all" name="status" checked={selectedStatus === 'すべて'} onChange={() => handleStatusFilterChange('すべて')} /> {}
         <label htmlFor="all">すべて</label>
-        <input type="radio" id="working" name="status" />
+        <input type="radio" id="working" name="status" checked={selectedStatus === '作業中'} onChange={() => handleStatusFilterChange('作業中')} /> {}
         <label htmlFor="working">作業中</label>
-        <input type="radio" id="completed" name="status" />
+        <input type="radio" id="completed" name="status" checked={selectedStatus === '完了'} onChange={() => handleStatusFilterChange('完了')} /> {}
         <label htmlFor="completed">完了</label>
       </div>
       <div>
-        {todos.map((todo) => (
+        {todos.filter((todo) => {
+          if (selectedStatus === 'すべて') return true;
+          if (selectedStatus === '作業中' && todo.status === '作業中') return true;
+          if (selectedStatus === '完了' && todo.status === '完了') return true;
+          return false;
+        }).map((todo) => (
           <div key={todo.id}>
             <span>{todo.id}</span>
             <span>{todo.text}</span>
-            <button onClick={() => handleStatusChange(todo.id)}>{todo.status}</button> {}
-            <button onClick={() => handleDeleteClick(todo.id)}>削除</button> {}
+            <button onClick={() => handleStatusChange(todo.id)}>{todo.status}</button>
+            <button onClick={() => handleDeleteClick(todo.id)}>削除</button>
           </div>
         ))}
       </div>
