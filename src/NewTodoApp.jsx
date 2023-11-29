@@ -35,6 +35,19 @@ function NewTodoApp() {
     setSelectedStatus(status);
   };
 
+  const filterTodos = (todo) => {
+    if (selectedStatus === 'すべて') {
+      return todo;
+    }
+    if (selectedStatus === '作業中' && todo.status === '作業中') {
+      return todo;
+    }
+    if (selectedStatus === '完了' && todo.status === '完了') {
+      return todo;
+    }
+    return null;
+  };
+  
   return (
     <div>
       <h1>ToDoリスト</h1>
@@ -47,12 +60,7 @@ function NewTodoApp() {
         <label htmlFor="completed">完了</label>
       </div>
       <div>
-        {todos.filter((todo) => {
-          if (selectedStatus === 'すべて') return true;
-          if (selectedStatus === '作業中' && todo.status === '作業中') return true;
-          if (selectedStatus === '完了' && todo.status === '完了') return true;
-          return false;
-        }).map((todo) => (
+        {todos.filter((todo) => filterTodos(todo)).map((todo) => (
           <div key={todo.id}>
             <span>{todo.id}</span>
             <span>{todo.text}</span>
