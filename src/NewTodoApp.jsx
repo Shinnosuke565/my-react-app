@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Task from './components/Task';
 
 function NewTodoApp() {
   const [todos, setTodos] = useState([]);
@@ -11,7 +12,8 @@ function NewTodoApp() {
       return;
     }
 
-    setTodos([...todos, { id: todos.length, text: input, status: '作業中' }]);
+    const newTodos = todos.map((todo, index) => ({ ...todo, id: index }));
+    setTodos([...newTodos, { id: newTodos.length, text: input, status: '作業中' }]);
     setInput('');
   };
 
@@ -47,7 +49,7 @@ function NewTodoApp() {
     }
     return null;
   };
-  
+
   return (
     <div>
       <h1>ToDoリスト</h1>
@@ -62,8 +64,7 @@ function NewTodoApp() {
       <div>
         {todos.filter((todo) => filterTodos(todo)).map((todo) => (
           <div key={todo.id}>
-            <span>{todo.id}</span>
-            <span>{todo.text}</span>
+            <Task task={todo} handleDeleteClick={handleDeleteClick} />
             <button onClick={() => handleStatusChange(todo.id)}>{todo.status}</button>
             <button onClick={() => handleDeleteClick(todo.id)}>削除</button>
           </div>
