@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Task from './components/Task';
 
 function NewTodoApp() {
   const [todos, setTodos] = useState([]);
@@ -17,7 +18,7 @@ function NewTodoApp() {
   };
 
   const handleDeleteClick = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id).map((todo, index) => ({...todo, id: index}));
+    const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
 
